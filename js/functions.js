@@ -95,6 +95,7 @@ console.log(tip_amount);
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+
 function applyDiscount(price, percentage) {
     return price - (price * percentage);
 }
