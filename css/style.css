@@ -8,3 +8,43 @@ comment
     color: purple; /* single line comment */
     text-decoration: underline;
 }
+
+h1 {
+    text-align: center;
+}
+
+h2, h3 {
+    text-decoration: underline;
+}
+
+body {
+    background-color: aliceblue;
+    /*Why doesn't the below code work?'*/
+    /*background-image: url('img/baddie.png');*/
+    background-image: url("https://img.freepik.com/free-vector/abstract-geometric-shape-connection-with-3d-cubes-background_42705-105.jpg?size=626&ext=jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    font-family: "Comic Sans MS";
+}
+
+ul {
+    list-style: square;
+}
+
+table {
+    font-size: 2em;
+}
+
+tr {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+a:link {
+    color:red;
+}
+
+a:visited {
+    color:mediumpurple;
+}
