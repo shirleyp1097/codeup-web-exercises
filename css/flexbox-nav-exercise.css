@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    /*justify-content: flex-start;*/
+    background: lightgray;
+}
+
+a {
+    display: inline-block;
+    padding: 1em;
+    font-family: 'Work Sans';
+    font-weight: bold;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    padding: .2em 0;
+    position: absolute;
+    left: 700px;
+    top: -5px;
+    /*THE ABOVE WORKS BuT IS IT REALLY THE BEST WAY?*/
+}
+
+a:hover {
+    color: blue;
+}
+
+img {
+    height: 20px;
+}
+
+nav a:nth-child(6) {
+    margin-left: auto;
+}
+
