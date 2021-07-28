@@ -77,9 +77,8 @@ section:nth-of-type(3) {
 
 section:nth-of-type(3) h3 {
     align-self: center;
-    /*justify-content: flex-start;*/
-    /*position: relative;*/
-    /*right: 90px;*/
+    justify-content: flex-start;
+    margin-right: auto;
 }
 
 .orange-circle {
@@ -95,8 +94,6 @@ section:nth-of-type(3) h3 {
     width: 5em;
     background: brown;
     flex-grow: 1;
-    /*justify-content: space-between;*/
-    /*WHY DOESNT THIS WORK ABOVE?*/
 }
 
 .large-brown-box:nth-of-type(2) {
