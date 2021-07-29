@@ -19,9 +19,11 @@ a {
     font-family: 'Montserrat', sans-serif;
     font-size: 3em;
     padding: .2em 0;
-    position: absolute;
-    left: 700px;
-    top: -5px;
+    margin: auto;
+    position: relative;
+    left: 100px;
+    /*left: 700px;*/
+    /*top: -5px;*/
     /*THE ABOVE WORKS BuT IS IT REALLY THE BEST WAY?*/
 }
 
