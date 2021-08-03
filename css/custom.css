@@ -1,5 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 .jumbotron {
     background-image: url("../img/pizza.png");
+    padding-left: 0;
+    padding-right: 0;
 }
 
 h1 {
