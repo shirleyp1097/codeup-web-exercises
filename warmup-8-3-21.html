@@ -16,13 +16,13 @@
     //
     //     returnObj['containsAllStrings'] = check(arr);
     //
-    //   function add(x) {
-    //       var sum = x[0];
-    //       for (var i=1;i<x.length;i++) {
-    //           sum += x[i];
-    //       return sum;
-    //       }
-    //   }
+      function add(x) {
+          var sum = x[0];
+          for (var i=1;i<x.length;i++) {
+              sum += x[i];
+          return sum;
+          }
+      }
     //
     //   returnObj['combineResult'] = add(arr);
     //
@@ -32,9 +32,10 @@
 
     function analyzeArray(arr) {
         var combine = arr[0];
-        for (var i = 0; i < arr.length; i++) {
-
+        for (var i = 1; i < arr.length; i++) {
+            combine += arr[i];
         }
+        return combine;
     }
 
       console.log(analyzeArray([1, 2, 3]));
