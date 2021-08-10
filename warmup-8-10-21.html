@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warmup</title>
+</head>
+<body>
+    <script>
+
+        // function filterOutBobUsers(arr) {
+        //     for (var i = 1;i<arr.length;i++) {
+        //         if (arr[i].firstName.toUpperCase() === 'BOB') {
+        //             arr.splice(arr[i], 1)
+        //         }
+        //     }
+        //     return arr;
+        // }
+        function filterOut(arr) {
+            return arr.filter(el => el.firstName.toUpperCase() !== 'BOB')
+        }
+
+
+
+        // Create a function, filterOutBobUsers, that takes in an array of user objects with firstName and lastName properties and returns an array of user objects without any Bob users. The case of the Bob names does not matter.
+        //
+            var users = [
+            {
+                firstName: 'bob',
+                lastName: 'Smith'
+            },
+            {
+                firstName: 'BOB',
+                lastName: 'Smith'
+            },
+            {
+                firstName: 'Fred',
+                lastName: 'Smith'
+            },
+            {
+                firstName: 'Cathy',
+                lastName: 'Smith'
+            },
+            {
+                firstName: 'Dawn',
+                lastName: 'Smith'
+            }
+        ]
+        //
+        filterOut(users); // returns...
+        //
+        //     [
+        //     {
+        //         firstName: 'Fred',
+        //         lastName: 'Smith'
+        //     },
+        //         {
+        //             firstName: 'Cathy',
+        //             lastName: 'Smith'
+        //         },
+        //         {
+        //             firstName: 'Dawn',
+        //             lastName: 'Smith'
+        //         }
+        //     ]
+    </script>
+</body>
+</html>
