@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>warmup</title>
+</head>
+<body>
+  <script>
+    // function processNumber(num) {
+    //   var numToString = String(num);
+    //   var myArr = [];
+    //   for (var i=0;i<numToString.length;i++) {
+    //     if (i % 2 == 0) {
+    //       myArr.push(parseFloat(numToString[i]));
+    //     } else {
+    //       if (parseFloat(numToString[i]) * 2 > 10) {
+    //         for (var j=0;i<numToString[j].length;j++) {
+    //           myArr.push(numToString[j]);
+    //         }
+    //       } else {
+    //         myArr.push(numToString[i]);
+    //       }
+    //     }
+    //   }
+    //   return myArr
+    // }
+
+    function toSingle(num) {
+      var stringNum = String(num);
+      var returnSum = 0;
+      for (var i = 0;i<stringNum.length;i++) {
+        returnSum += parseFloat(stringNum[i]);
+      }
+      return returnSum;
+    }
+
+    function processNumber(num) {
+      var stringNum = String(num);
+      var mySum = 0;
+      for (var i = 0; i < stringNum.length; i++) {
+        if (i % 2 == 0) {
+          mySum += parseFloat(stringNum[i]);
+        } else {
+          if ((stringNum[i] * 2) % 10 >= 0) {
+            mySum += toSingle(stringNum[i] * 2);
+          } else {
+            mySum += parseFloat(stringNum[i]) * 2;
+          }
+        }
+      }
+      return mySum;
+    }
+
+  </script>
+</body>
+</html>
