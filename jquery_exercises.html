@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery_Exercises</title>
+<!--    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>-->
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+<!--  JQuery-->
+  <script>
+    "use strict";
+
+    $(document).ready(function() {
+
+      // alert('The page has finished loading');
+      // var heading = $('#heading').html();
+      // alert(heading);
+      // $('.codeup').css('border', '1px solid red');
+      // $('li').css('font-size','20px');
+      // $('h1, p, li').html();
+      $('h1').click(
+              function() {
+                $(this).css('background-color','blue')
+              }
+      )
+      $('p').dblclick(
+              function() {
+                $(this).css('font-size','18px');
+              }
+      )
+      $('li').hover(
+              function() {
+                $(this).css('color','red')
+              },
+              function() {
+                $(this).css('color','black')
+              }
+      )
+
+
+    });
+  </script>
+
+  <div id="division" class="codeup">
+    <h1 id="heading" class="codeup">
+      What Up This is the Heading!
+    </h1>
+    <p id="paragraph" class="">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consectetur consequatur, deleniti dicta distinctio dolorum ea explicabo harum incidunt magni minus molestiae nemo nihil quisquam sint, ut voluptatem. Cupiditate, quos?
+    </p>
+    <ul id="unordered-list" class="fancy-unordered-list">
+      <li id="codeup" class="fancy-list">List Item 1</li>
+      <li id="list-item-2" class="fancy-list">List Item 2</li>
+      <li id="list-item-3" class="fancy-list">List Item 3</li>
+    </ul>
+  </div>
+
+</body>
+</html>
