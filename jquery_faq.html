@@ -11,8 +11,21 @@
           event.preventDefault();
           $('dd').toggleClass('invisible');
         })
-        // $('dd').addClass('invisible')
+          $('button').click(function(event) {
+              event.preventDefault();
+              $('.inner-list > li:last-child').css('background-color','yellow');
+          })
+          $('h3').click(function(event) {
+              event.preventDefault();
+              $(this).next().css('font-weight','bold');
+          })
+          $('li').click(function(event) {
+              event.preventDefault();
+              $(this).parent().children('.first-child').css('color','blue');
+          })
+
       })
+
     </script>
     <style>
       .invisible {
@@ -38,19 +51,34 @@
     <dd>No one ever reading this who am I kidding?</dd>
   </dl>
 
-<ul>
-  <li>
-    <h3>
-      My H3 Heading
-    </h3>
-  </li>
-  <li>
-    <ul>
-      <li>Fact 1: I will not eat green eggs and ham</li>
-      <li>Fact 2: This is ridiculous</li>
-      <li>Fact 3: Are people really going to waste their time searching up facts about National Parks?</li>
-    </ul>
-  </li>
+<h3>
+  My H3 Heading
+</h3>
+<ul class="inner-list">
+  <li class="first-child">Fact 1: I will not eat green eggs and ham</li>
+  <li>Fact 2: This is ridiculous</li>
+  <li>Fact 3: Are people really going to waste their time searching up facts about National Parks?</li>
 </ul>
+<!--<ul>-->
+<!--    <li>-->
+<!--        <h3>-->
+<!--            My Second List-->
+<!--        </h3>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--        <ul class="inner-list">-->
+<!--            <li>-->
+<!--                This is fact one-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                This is fact two-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                This is fact three-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--</ul>-->
+<button>Click me!</button>
 </body>
 </html>
