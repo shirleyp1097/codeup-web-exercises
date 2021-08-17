@@ -15,7 +15,7 @@
           $('.first-button').click(function(event) {
             event.preventDefault();
             leftImage = $('.first-div').css('background-image', centerImage);
-             $('.second-div').css('background-image',leftImage);
+            rightImage = $('.third-div').css('background-image',leftImage);
           })
 
         $('.second-button').click(function(event) {
@@ -24,10 +24,10 @@
             }
             event.preventDefault();
             if (getRndInteger(0,1) == 1) {
-                $('.second-div').css('background-image',leftImage);
-                $()
+                centerImage = $('.second-div').css('background-image',leftImage);
+
             } else {
-                $('.second-div').css('background-image',rightImage);
+                centerImage = $('.second-div').css('background-image',rightImage);
             }
         })
       })

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe</title>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/tic-tac-toe.css">
+</head>
+<body>
+    <script>
+        $(document).ready(function() {
+            var x_player_turn = true;
+            var x_cache = [];
+            var y_cache = [];
+            function is_winning_numbers(arr) {
+                return ((arr.includes(1) && arr.includes(2) && arr.includes(3)) ||
+                    (arr.includes(1) && arr.includes(4) && arr.includes(7)) ||
+                    (arr.includes(1) && arr.includes(5) && arr.includes(9)) ||
+                    (arr.includes(2) && arr.includes(5) && arr.includes(8)) ||
+                    (arr.includes(3) && arr.includes(6) && arr.includes(9)) ||
+                    (arr.includes(4) && arr.includes(5) && arr.includes(6)) ||
+                    (arr.includes(7) && arr.includes(8) && arr.includes(9)) ||
+                    (arr.includes(3) && arr.includes(5) && arr.includes(7)));
+            }
+
+            console.log(is_winning_numbers([1,2,3]));
+            console.log(is_winning_numbers([2]));
+            console.log(is_winning_numbers([2,3,4]))
+
+
+
+            if (is_winning_numbers(x_cache) === true) {
+                alert("Jenny wins!")
+            }
+            else if (is_winning_numbers(y_cache) === true) {
+                alert("Paris wins!");
+            }
+
+            $('.square').click(function() {
+                if (x_player_turn == true) {
+                    if ($(this).not('.paris-filled')) {
+                        $(this).addClass("jenny-filled");
+                        x_cache.push(parseFloat($(this).attr('id')))
+                        x_player_turn = false;
+                        console.log(x_cache)
+                    } else {}
+                } else {
+                    if ($(this).hasClass('jenny-filled')) {} else {
+                        $(this).addClass('paris-filled')
+                        y_cache.push(parseFloat($(this).attr('id')))
+                        x_player_turn = true;
+                    }
+                }
+            })
+
+        })
+    </script>
+    <div class="container">
+        <div class="square" id="1"></div>
+        <div class="square" id="2"></div>
+        <div class="square" id="3"></div>
+
+        <div class="break"></div>
+
+        <div class="square" id="4"></div>
+        <div class="square" id="5"></div>
+        <div class="square" id="6"></div>
+
+        <div class="break"></div>
+
+        <div class="square" id="7"></div>
+        <div class="square" id="8"></div>
+        <div class="square" id="9"></div>
+    </div>
+</body>
+</html>
