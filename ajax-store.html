@@ -18,15 +18,41 @@
     </thead>
     <tbody id="insertProducts"></tbody>
 </table>
+<button>Load JSON</button>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function() {
 
-        $.get("data/inventory.json").done(function(data) {
-            console.log(data);
-            $('#insertProducts').html(data);
+        // $.get("data/inventory.json").done(function(data) {
+        //     console.log(data);
+        //     // $('#insertProducts').add('<td>data.title</td>');
+        //     data.forEach(function(product) {
+        //         $('#insertProducts').append('<tr>' +
+        //             '<td>' + product.title + '</td>' +
+        //             '<td>' + product.quantity + '</td>' +
+        //             '<td>' + product.price + '</td>' +
+        //             '<td>' + product.categories.join(' ') + '</td>' +
+        //             '</tr>')
+        //
+        //     })
+        // })
+        $('button').on('click',function() {
+            $('#insertProducts').html('');
+            $.get("data/inventory.json").done(function(data) {
+                console.log(data);
+                // $('#insertProducts').add('<td>data.title</td>');
+                data.forEach(function(product) {
+                    $('#insertProducts').append('<tr>' +
+                        '<td>' + product.title + '</td>' +
+                        '<td>' + product.quantity + '</td>' +
+                        '<td>' + product.price + '</td>' +
+                        '<td>' + product.categories.join(' ') + '</td>' +
+                        '</tr>')
+
+                })
+            })
         })
     })
 
