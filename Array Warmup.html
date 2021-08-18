@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Array Warm Up</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -34,7 +35,30 @@
         }
     }
 
+    $(document).ready(function() {
+        var word = $('input').keyup(function() {
+            var value = $(this).val();
+            $('button').click(function() {
+                $('p').text(value);
+            })
+        })
+        $('#create-an-element').click(function() {
+            $(this).parent().append('<p>This is a new element</p>')
+        })
+    })
+
+
+
 </script>
+
+<section>
+    <input type="text" id="wordToDisplay">
+    <button id="displayWord">Display in DOM</button>
+    <p id="word"></p>
+</section>
+<section>
+    <button id="create-an-element">Create an Element</button>
+</section>
 
 </body>
 </html>
