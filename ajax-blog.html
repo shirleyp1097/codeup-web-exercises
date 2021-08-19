@@ -14,7 +14,7 @@
     "use strict";
     $.get('data/blog.json').done(function(data) {
         data.forEach(function(post) {
-            // console.log(post.title)
+            console.log(post.title)
             $('#posts').append(
                 '<h2>' + post.title + '</h2>' +
                 '<p>' + post.content + '</p>' +
