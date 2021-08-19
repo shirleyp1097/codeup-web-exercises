@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox</title>
+    <script src="js/keys.js"></script>
+    <script src="js/mapbox-geocoder-utils.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+  <div id='map' style='width: 400px; height: 300px;'></div>
+  <script>
+    mapboxgl.accessToken = MAPBOX_API_TOKEN;
+    const map = new mapboxgl.Map({
+      container: 'map', // container ID
+      style: 'mapbox://styles/mapbox/streets-v11', // style URL
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9 // starting zoom
+    });
+
+    geocode("4901 Broadway St, San Antonio, TX 78209", MAPBOX_API_TOKEN).then(function(result) {
+        var popup = new mapboxgl.Popup().setHTML('<p>The best Thai food this side of the Pacific</p>')
+        var marker = new mapboxgl.Marker()
+            .setLngLat(result)
+            .addTo(map)
+            .setPopup(popup);
+        map.setCenter(result);
+        map.setZoom(17);
+    })
+    // var restaurants = [
+    //     {address: "4901 Broadway St, San Antonio",
+    //         popupHTML: "<p>yo</p>"
+    //     },
+    //
+    //     {
+    //         address: "255 E Basse Rd, San Antonio",
+    //             popupHTML: "<p>We serve steak</p>s"
+    //     }
+    // ]
+    //
+    //
+    // restaurants.forEach(function(restaurant) {
+    //     geocode(restaurant.address, MAPBOX_API_TOKEN).then(function(result) {
+    //         var popup = new mapboxgl.Popup.setHTML(restaurant.popupHTML);
+    //         var marker = new mapboxgl.Marker().setLngLat(result).addTo(map).setPopup(popup);
+    //         map.setCenter(result);
+    //         map.setZoom(15);
+    //     })
+    // })
+
+
+    // geocode("4901 Broadway St, San Antonio, TX 78209", MAPBOX_API_TOKEN).then(function(result) {
+    //     var popup = new mapboxgl.Popup().setHTML('<p>The best Thai food this side of the Pacific</p>')
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat(result)
+    //         .addTo(map)
+    //         .setPopup(popup);
+    //     map.setCenter(result);
+    //     map.setZoom(17);
+    // })
+
+  </script>
+</body>
+</html>
