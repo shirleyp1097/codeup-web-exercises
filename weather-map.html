@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/keys.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="fiveDays">
+
+</div>
+
+<!--ORIGINAL CARD-->
+<!--<div class="card my-2">-->
+<!--    <div class="card-header" id="date">-->
+<!--        Date-->
+<!--    </div>-->
+<!--    <ul class="list-group list-group-flush">-->
+<!--        <li class="list-group-item" id="temperature">Temperature</li>-->
+<!--        <li class="list-group-item" id="description">Description and Humidity</li>-->
+<!--        <li class="list-group-item" id="wind">Wind</li>-->
+<!--        <li class="list-group-item" id="pressure">Pressure</li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+<script>
+    // CURRENT CONDITIONS IN SAN ANTONIO
+  //   $.get("http://api.openweathermap.org/data/2.5/weather",
+  //       {
+  //   APPID: OPEN_WEATHER_APPID,
+  //   q:     "San Antonio, US",
+  //   units: "imperial"
+  // }
+  // ).done(function(data) {
+  //       console.log(data);
+  //       $('#temperature').text('Temperature: ' + data.main.temp + ' Fahrenheit');
+  //       $('#description').text('Description: ' + data.weather[0].description);
+  //       $('#wind').text('Wind: ' + data.wind.speed + ' mph');
+  //       $('#pressure').text('Pressure: ' + data.main.pressure + ' hPa');
+  //
+  // });
+
+
+
+    // FIVE DAY FORECAST SAN ANTONIO
+    $.get('http://api.openweathermap.org/data/2.5/onecall', {
+        APPID: OPEN_WEATHER_APPID,
+        lat: 29.42,
+        lon: -98.49,
+        units: "imperial",
+        exclude: 'minutely,current,hourly,alerts',
+    }).done(function(data) {
+        // console.log(data);
+        var daysArray = data.daily.slice(5);
+        daysArray.forEach(function(day) {
+
+        })
+    })
+</script>
+</body>
+</html>

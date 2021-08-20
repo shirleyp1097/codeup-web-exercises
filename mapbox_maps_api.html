@@ -19,35 +19,36 @@
       zoom: 9 // starting zoom
     });
 
-    geocode("4901 Broadway St, San Antonio, TX 78209", MAPBOX_API_TOKEN).then(function(result) {
-        var popup = new mapboxgl.Popup().setHTML('<p>The best Thai food this side of the Pacific</p>')
-        var marker = new mapboxgl.Marker()
-            .setLngLat(result)
-            .addTo(map)
-            .setPopup(popup);
-        map.setCenter(result);
-        map.setZoom(17);
-    })
-    // var restaurants = [
-    //     {address: "4901 Broadway St, San Antonio",
-    //         popupHTML: "<p>yo</p>"
-    //     },
-    //
-    //     {
-    //         address: "255 E Basse Rd, San Antonio",
-    //             popupHTML: "<p>We serve steak</p>s"
-    //     }
-    // ]
-    //
-    //
-    // restaurants.forEach(function(restaurant) {
-    //     geocode(restaurant.address, MAPBOX_API_TOKEN).then(function(result) {
-    //         var popup = new mapboxgl.Popup.setHTML(restaurant.popupHTML);
-    //         var marker = new mapboxgl.Marker().setLngLat(result).addTo(map).setPopup(popup);
-    //         map.setCenter(result);
-    //         map.setZoom(15);
-    //     })
+    // geocode("4901 Broadway St, San Antonio, TX 78209", MAPBOX_API_TOKEN).then(function(result) {
+    //     var popup = new mapboxgl.Popup().setHTML('<p>The best Thai food this side of the Pacific</p>')
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat(result)
+    //         .addTo(map)
+    //         .setPopup(popup);
+    //     map.setCenter(result);
+    //     map.setZoom(17);
     // })
+    var restaurants = [
+        {address: "4901 Broadway St, San Antonio",
+            popupHTML: "<p>We serve Thai food</p>"
+        },
+
+        {
+            address: "255 E Basse Rd, San Antonio",
+                popupHTML: "<p>We serve steak</p>s"
+        }
+    ]
+    //
+    //
+    restaurants.forEach(function(restaurant) {
+        geocode(restaurant.address, MAPBOX_API_TOKEN).then(function(result) {
+            console.log(result)
+            var popup = new mapboxgl.Popup().setHTML(restaurant.popupHTML);
+            var marker = new mapboxgl.Marker().setLngLat(result).addTo(map).setPopup(popup);
+            map.setCenter(result);
+            map.setZoom(10);
+        })
+    })
 
 
     // geocode("4901 Broadway St, San Antonio, TX 78209", MAPBOX_API_TOKEN).then(function(result) {

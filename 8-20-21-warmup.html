@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Warm Up</title>
+  <script src="js/jquery.js"></script>
+</head>
+<body>
+
+<!-- TODO: add functionality such that the number in the input will be added to the total in the h1 when the button is clicked
+      No changes to the existing HTML is needed, other than adding jQuery or JavaScript.
+-->
+<h1 id="number-output">0</h1>
+<form>
+  <input id="number-input" type="number" min="0" max="100">
+  <button id="add-btn">Add</button>
+</form>
+
+
+<script>
+  $(document).ready(function() {
+    var sum = parseFloat($('#number-output').html())
+    $('#add-btn').click(function(event) {
+      event.preventDefault();
+      sum += parseFloat($('input').val())
+      $('#number-output').html(sum)
+    })
+  })
+</script>
+</body>
+</html>
