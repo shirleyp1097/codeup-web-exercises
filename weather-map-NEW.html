@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Map</title>
+  <script src="js/jquery.js"></script>
+  <script src="js/keys.js"></script>
+  <script src="js/mapbox-geocoder-utils.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="js/mapbox-geocoder-utils.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+<navbar class="navbar bg-primary">
+  <!--    <div class="container container-fluid">-->
+  <div class="">
+    <a class="navbar-brand text-white" href="#">5-Day Weather Forecast</a>
+    <a class="text-white">
+      Current City:
+      <span id="currentCity">San Antonio, TX</span>
+    </a>
+  </div>
+
+</navbar>
+
+<!--SEARCHBAR-->
+<div class="input-group my-2">
+  <div class="form-outline mx-2">
+    <input type="search" id="cityValue" class="form-control" placeholder="Enter a city..." />
+  </div>
+  <button type="button" class="btn btn-primary">
+    <i class="bi bi-search" id="citySearch">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+    </i>
+  </button>
+</div>
+
+<div class="d-flex flex-row justify-content-around" id="fiveDays">
+
+</div>
+
+<div id='map' style='width: 1500px; height: 400px;'></div>
+
+
+<script>
+  // CURRENT CONDITIONS IN SAN ANTONIO
+  //   $.get("http://api.openweathermap.org/data/2.5/weather",
+  //       {
+  //   APPID: OPEN_WEATHER_APPID,
+  //   q:     "San Antonio, US",
+  //   units: "imperial"
+  // }
+  // ).done(function(data) {
+  //       console.log(data);
+  //       $('#temperature').text('Temperature: ' + data.main.temp + ' Fahrenheit');
+  //       $('#description').text('Description: ' + data.weather[0].description);
+  //       $('#wind').text('Wind: ' + data.wind.speed + ' mph');
+  //       $('#pressure').text('Pressure: ' + data.main.pressure + ' hPa');
+  //
+  // });
+
+
+  // MAPBOX
+  mapboxgl.accessToken = MAPBOX_API_TOKEN;
+  const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [-98.49, 29.42], // starting position [lng, lat]
+    zoom: 5 // starting zoom
+  });
+
+  var marker = new mapboxgl.Marker({draggable: true})
+          .setLngLat([-98.49, 29.42])
+          .addTo(map);
+
+  function onDragEnd() {
+    const lngLat = marker.getLngLat();
+    newLong = lngLat.lng;
+    newLat = lngLat.lat;
+    getNewForecast(newLat, newLong);
+    reverseGeocode({lng: newLong, lat: newLat}, MAPBOX_API_TOKEN).then(function(reverseResult) {
+      var currentCity = (reverseResult.features[0].context[1].text) + ', ' + (reverseResult.features[0].context[3].text)
+      $('#currentCity').text(currentCity);
+    })
+  }
+
+  marker.on('dragend', onDragEnd);
+
+
+  $('#citySearch').click(function() {
+    var city = $('#cityValue').val();
+    geocode(city, MAPBOX_API_TOKEN).then(function(result) {
+      console.log(result);
+      map.setCenter(result);
+      map.setZoom(5);
+      marker.setLngLat([result[0], result[1]]);
+      getNewForecast(result[1], result[0]);
+      reverseGeocode({lng: result[0], lat: result[1]}, MAPBOX_API_TOKEN).then(function(reverseResult) {
+        console.log(reverseResult);
+        var currentCity = (reverseResult.features[0].context[2].text) + ', ' + (reverseResult.features[0].context[4].text)
+        $('#currentCity').text(currentCity);
+      })
+    })
+    $('#cityValue').text('');
+    // console.log(city)
+  })
+
+
+
+  // FIVE DAY FORECAST SAN ANTONIO
+
+  function getNewForecast(latitude = 29.42, longitude = -98.49) {
+    // $('#fiveDays').html('');
+    $.get('http://api.openweathermap.org/data/2.5/onecall', {
+      APPID: OPEN_WEATHER_APPID,
+      lat: latitude,
+      lon: longitude,
+      units: "imperial",
+      exclude: 'minutely,current,hourly,alerts',
+    }).done(function(data) {
+
+      $('#fiveDays').html('');
+      var daysArray = data.daily.slice(0,5);
+      console.log(daysArray)
+      daysArray.forEach(function(day) {
+        $('#fiveDays').append(
+                '<div class="card my-2" style="width: 18rem;">' +
+                '<div class="card-header">' + timeConverter(day.dt) + '</div>' +
+                '<ul class="list-group list-group-flush">' +
+                '<li class="list-group-item">' + 'Temperature: ' + day.temp.day + '\u00B0 Fahrenheit' + '</li>' +
+                '<li class="list-group-item">' + 'Description: ' + day.weather[0].description +
+
+                '<span>' + `<img src='http://openweathermap.org/img/w/${day.weather[0].icon}.png' style="width: 2rem">` + '</span>' + '</li>' +
+                '<li class="list-group-item">' + 'Wind Speed: ' + day.wind_speed + ' mph' + '</li>' +
+                '<li class="list-group-item">' + 'Pressure: ' + day.pressure + ' hPa' + '</li>'
+
+                + '</ul>'
+
+
+                + '</div>'
+        )
+      })
+    })
+  }
+
+  getNewForecast();
+
+
+  function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year;
+    return time;
+  }
+
+
+
+
+
+
+  // <!--ORIGINAL CARD-->
+  // <!--<div class="card my-2">-->
+  // <!--    <div class="card-header" id="date">-->
+  // <!--        Date-->
+  // <!--    </div>-->
+  // <!--    <ul class="list-group list-group-flush">-->
+  // <!--        <li class="list-group-item" id="temperature">Temperature</li>-->
+  // <!--        <li class="list-group-item" id="description">Description and Humidity</li>-->
+  // <!--        <li class="list-group-item" id="wind">Wind</li>-->
+  // <!--        <li class="list-group-item" id="pressure">Pressure</li>-->
+  // <!--    </ul>-->
+  // <!--</div>-->
+</script>
+</body>
+</html>
