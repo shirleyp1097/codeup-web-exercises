@@ -142,12 +142,18 @@ console.log(dogs.reduce((previous, current) => {
 
 // TODO 9: using reduce, return an array of dog objects with all isTrained properties set to true
 console.log('Exercise 9:');
-console.log(dogs.reduce((previous, current) => {
-    let trainedDog = current;
-    trainedDog.isTrained = true;
-    previous.push(trainedDog);
-    return previous;
-}, []))
+// console.log(dogs.reduce((previous, current) => {
+//     let trainedDog = current;
+//     trainedDog.isTrained = true;
+//     previous.push(trainedDog);
+//     return previous;
+// }, []))
+
+// const allTrained = dogs.map((dog) => dog.isTrained = true);
+// console.log(allTrained);
+//
+//
+console.log(dogs)
 
 // EXTRA CHALLENGES
 
@@ -159,15 +165,51 @@ console.log(dogs.reduce((previous, current, index, arr) => {
 
 // TODO 11: what is the average age of dogs that are trained?
 console.log('Exercise 11:');
+const trainedDogs = dogs.filter((dog) => dog.isTrained == true);
+const avgAgeTrained = trainedDogs.reduce((previous, current, index, arr) => {
+    return previous + current.age / arr.length;
+}, 0)
+console.log(avgAgeTrained)
+// console.log(dogs.filter((dog) => dog.isTrained === true))
 
 // TODO 12: what is the average length of names of untrained dogs?
-console.log('Exercise 12:');
+console.log('Exercise 12:')
+
+let isUntrained = (animal) => {
+    return animal.isTrained === false;
+}
+
+console.log(dogs.filter(isUntrained).reduce((previous, current, index, arr) => {
+    return previous + current.dogName.length / arr.length;
+}, 0));
+
+// let isDog = function()
+
 
 // TODO 13: what are the combined ages of all dogs in dog years? (7x more than a human year)
 console.log('Exercise 13:');
+let dogYears = (animal) => {
+    return animal.age * 7;
+}
+
+let sum = (sum, animal) => {
+    return sum + animal
+}
+
+console.log(dogs.map(dogYears).reduce(sum));
+console.log(dogs)
 
 // TODO 14: create a string of the first letters of each dog name for dogs three years old (should be "LF")
 console.log('Exercise 14:');
 
+let isThree = (dog) => {
+    return dog.age === 3;
+}
+
+const lastOne = dogs.filter(isThree).reduce((previous, current, index, arr) => {
+    return previous + current.dogName[0]
+}, '')
+
+console.log(lastOne)
 
 
