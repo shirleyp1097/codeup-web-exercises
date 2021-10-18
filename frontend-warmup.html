@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>frontend warmup</title>
+</head>
+<body>
+  <button id="hide-btn">Hide Paragraph</button>
+  <p id="paragraph">
+    This paragraph will disappear when the button is clicked
+  </p>
+</body>
+
+<script>
+  const myButton = document.getElementById("hide-btn");
+  if (myButton) {
+    myButton.addEventListener("click", function() {
+      console.log("Clicked")
+      document.getElementById("paragraph").style.display = "none";
+    })
+  }
+</script>
+</html>
+
+<!--In `codeup-web-exercises`, create a new HTML file called, `frontend-warmup.html` and add the following:-->
+<!-- - a button element with an id of `hide-btn` and inner text that says-->
+<!--“Hide Paragraph.”-->
+<!-- - a paragraph with and id of `paragraph` and the inner text, ‘This paragraph will disappear when the button is clicked.’-->
+<!--Add script tags with JavaScript that will hide the paragraph when the hide button is clicked.-->
+<!--REMINDERS:-->
+<!-- - document.querySelector() selects elements just like jQuery-->
+<!-- - <DOM_NODE_HERE>.addEventListener(EVENT_TYPE, FUNCTION_HERE) is used for adding events-->
+<!--  - <DOM_NODE_HERE>.style can alter the styling of a DOM selected element-->
+<!--    - setting display to none on the paragraph will ‘hide’ it-->
+<!--    BONUS: add a functional show button-->
+<!--    Add, commit and push when finished-->
