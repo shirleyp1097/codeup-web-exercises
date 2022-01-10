@@ -91,6 +91,38 @@ function findShort(s){
     return length;
 }
 
+function findUniq(arr) {
+    let myDict = {};
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] in myDict) {
+            myDict[arr[i]] += 1;
+        } else {
+            myDict[arr[i]] = 1;
+        }
+    }
+    return parseInt(Object.keys(myDict).find(key => myDict[key] === 1));
+}
+
+function pigIt(str){
+    str = str.split(" ");
+    for (let i = 0; i < str.length; i++) {
+        if (/\W/.test(str[i])) {
+
+        } else {
+            let firstLetter = str[i][0];
+            str[i] = str[i].slice(1) + firstLetter + 'ay';
+        }
+    }
+    return str.join(' ');
+}
+
+function rot13(message){
+    message = message.split();
+    message = message.map(letter => letter.charCodeAt(0));
+}
+
+
+console.log(pigIt("my name is Paris Shirley"));
 // console.log(nbYear(1500, 5, 100, 5000));
 // console.log(nbYear(1500000, 2.5, 10000, 2000000));
 // console.log(nbYear(1500000, 0.25, 1000, 2000000));
