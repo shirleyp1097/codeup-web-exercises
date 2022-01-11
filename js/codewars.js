@@ -39,19 +39,6 @@ function nbYear(p0, percent, aug, p) {
     return years;
 }
 
-function findMissingLetter(array) {
-    array = array.map(letter => letter.charCodeAt(0));
-    let answer;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] + 1 !== array[i + 1]) {
-            answer = array[i] + 1;
-            break;
-        }
-    }
-    answer = String.fromCharCode(answer);
-    return answer;
-}
-
 function maskify(cc) {
     if (cc.length <= 4) {
         return cc;
@@ -116,13 +103,27 @@ function pigIt(str){
     return str.join(' ');
 }
 
+function findMissingLetter(array) {
+    array = array.map(letter => letter.charCodeAt(0));
+    let answer;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] + 1 !== array[i + 1]) {
+            answer = array[i] + 1;
+            break;
+        }
+    }
+    answer = String.fromCharCode(answer);
+    return answer;
+}
+
 function rot13(message){
     message = message.split();
     message = message.map(letter => letter.charCodeAt(0));
+    return message.toString();
 }
 
 
-console.log(pigIt("my name is Paris Shirley"));
+console.log(rot13("yowhat up"));
 // console.log(nbYear(1500, 5, 100, 5000));
 // console.log(nbYear(1500000, 2.5, 10000, 2000000));
 // console.log(nbYear(1500000, 0.25, 1000, 2000000));
