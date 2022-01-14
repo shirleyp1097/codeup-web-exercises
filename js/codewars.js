@@ -116,8 +116,38 @@ function findMissingLetter(array) {
     return answer;
 }
 
-function solution(number){
-    // convert the number to a roman numeral
+function dec2bin(dec) {
+    return (dec >>> 0).toString(2);
+}
+
+function isValidWalk(walk) {
+    let northSouth = 0;
+    let westEast = 0;
+    for (const letter of walk) {
+        if (letter === 'n') {
+            northSouth += 1;
+        } else if (letter === 's') {
+            northSouth -= 1;
+        } else if (letter === 'w') {
+            westEast += 1;
+        } else if (letter === 'e') {
+            westEast -= 1;
+        }
+    }
+    return northSouth === 0 && westEast === 0 && walk.length === 10;
+}
+
+function dirReduc(arr){
+    for (let i = 0; i < arr.length; i++) {
+        let testArr = [];
+        let finalArr = [];
+        testArr.push(arr[i], arr[i + 1]);
+        if (testArr.includes("NORTH") && testArr.includes("SOUTH")) {
+
+        } else {
+            finalArr.push(arr[i], arr[i+1]);
+        }
+    }
 }
 
 
