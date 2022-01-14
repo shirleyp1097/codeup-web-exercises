@@ -116,14 +116,12 @@ function findMissingLetter(array) {
     return answer;
 }
 
-function rot13(message){
-    message = message.split();
-    message = message.map(letter => letter.charCodeAt(0));
-    return message.toString();
+function solution(number){
+    // convert the number to a roman numeral
 }
 
 
-console.log(rot13("yowhat up"));
+
 // console.log(nbYear(1500, 5, 100, 5000));
 // console.log(nbYear(1500000, 2.5, 10000, 2000000));
 // console.log(nbYear(1500000, 0.25, 1000, 2000000));
