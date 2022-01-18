@@ -150,8 +150,45 @@ function dirReduc(arr){
     }
 }
 
+function count (string) {
+    let obj = {};
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] in obj) {
+            obj[string[i]] += 1;
+        } else {
+            obj[string[i]] = 1;
+        }
+    }
+    return obj;
+}
+
+function deleteNth(arr,n){
+    let count = {};
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] in count ? count[arr[i]]++ : count[arr[i]] = 1;
+    }
+    let returnArr = [];
+    for (let elem in count) {
+        let x = 0;
+        while (x < n && x < count[elem]) {
+            returnArr.push(parseInt(elem));
+            x++;
+        }
+    }
+    return returnArr;
+}
+
+var uniqueInOrder=function(iterable){
+    let newArr = [];
+    for (let i = 0; i < iterable.length; i++) {
+        if (iterable[i] === iterable[i + 1]) {
+
+        } else {
+            newArr.push(iterable[i])
+        }
+    }
+    return newArr;
+}
 
 
-// console.log(nbYear(1500, 5, 100, 5000));
-// console.log(nbYear(1500000, 2.5, 10000, 2000000));
-// console.log(nbYear(1500000, 0.25, 1000, 2000000));
+console.log(uniqueInOrder('AAAABBBCCDAABBB'));
