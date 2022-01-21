@@ -190,5 +190,19 @@ var uniqueInOrder=function(iterable){
     return newArr;
 }
 
+function arrayDiff(a, b) {
+    let newArr = [];
+    if (b.length === 0) {
+        return a;
+    }
+    a.forEach(elem => {
+        if (b.indexOf(elem) !== -1) {
 
-console.log(uniqueInOrder('AAAABBBCCDAABBB'));
+        } else if (newArr.indexOf(elem) !== -1) {
+
+        } else {
+            newArr.push(elem);
+        }
+    })
+    return newArr;
+}
